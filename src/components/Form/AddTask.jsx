@@ -6,7 +6,7 @@ import DropDownMenu from "../../components/DropDown";
 const AddTask = ({ setTasks, setShowModel }) => {
 
   const selectRef = useRef(null);
-  
+
   function handleClickOutside(event) {
     console.log(event.target);
     
@@ -21,6 +21,7 @@ const AddTask = ({ setTasks, setShowModel }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
 
   const [task, setTask] = useState({
     title: "",
