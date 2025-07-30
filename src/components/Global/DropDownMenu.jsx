@@ -36,11 +36,7 @@ const DropDownMenu = ({ options, defaultTitle, onOptionChose, label }) => {
           />
         </p>
         {show && (
-          <ul
-            className={` ${
-              label ? "top-[75px]" : " top-[45px]"
-            } absolute z-40 left-0 right-0 bg-white border-gray-300  border-[1.5px] rounded-md  flex flex-col gap-1 p-1`}
-          >
+          <ul className= {` ${label ? 'top-[75px]' : ' top-[45px]'} absolute z-40 left-0 right-0 bg-white border-gray-300  border-[1.5px] rounded-md  flex flex-col gap-1 p-1`} >
             {options.map((option, index) => {
               return (
                 <li

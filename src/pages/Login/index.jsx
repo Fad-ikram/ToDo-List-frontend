@@ -1,7 +1,7 @@
 import { LogIn } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../../components/Form/Input";
-import Button from "../../components/Form/Button";
+import Input from "../../components/Global/Input";
+import Button from "../../components/Global/Button";
 import { useState } from "react";
 const LoginPage = () => {
   const navigate = useNavigate();

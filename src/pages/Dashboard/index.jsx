@@ -1,99 +1,91 @@
-import {CircleCheck,Circle,Clock3,Calendar,LogOut,User,Plus} from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import Stats from "../../components/Form/dashboard/Stats";
-import AddTask from "../../components/Form/AddTask";
+import TodoCard from "../../components/dashboard/TodoCard";
+import TodoStats from "../../components/dashboard/TodoStats";
+import DropDownMenu from "../../components/Global/DropDownMenu";
+import Model from "../../components/Global/Model";
+import NavBar from "../../components/Global/NavBar";
+import { CircleCheck, Circle, Clock3, Calendar, Plus } from "lucide-react";
 import { useState } from "react";
-import DropDown from "../../components/DropDown";
-import TodoCard from "../../components/Form/dashboard/TaskCards";
 
-const Dashboard = () => {
-  const navigate = useNavigate();
+const DashboardPage = () => {
   const [showModel, setShowModel] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState("All Tasks");
 
   return (
     <>
-      <header className="flex justify-between items-center px-[10%] py-4 bg-white shadow-lg sticky top-0 z-40">
-        <div className="flex items-center gap-4">
-          <h1 className="text-primary font-bold text-2xl">Todo Master</h1>
-          <div className="flex items-center gap-2 text-gray-600">
-            <User size={18} />
-            Welcome, Ben-yelles Ikram
-          </div>
-        </div>
-
-        <button
-          onClick={() => {
-            navigate("/sign-in");
-          }}
-          className="transition-all duration-500 hover:bg-gray-200 flex items-center gap-2 border-[1.5px] text-sm text-gray-700 border-gray-400 rounded-md px-4 py-2"
-        >
-          <LogOut size={16} /> LogOut
-        </button>
-      </header>
+      <NavBar />
       <main className="bg-background  px-[10%] ">
-        {showModel && (
-          <AddTask setTasks={setTasks} setShowModel={setShowModel} />
-        )}
-        <section className="flex  items-center gap-8 justify-between pt-16">
-          <Stats
-            Icon={<Circle size={34} className="text-primary" />}
-            title="Total Tasks"
-            count={0}
-            color="text-black"
-          />
-          <Stats
-            Icon={<CircleCheck size={34} className="text-green" />}
-            title="Completed"
-            count={0}
-            color="text-green"
-          />
-          <Stats
-            Icon={<Clock3 size={34} className="text-orange" />}
-            title="Pending"
-            count={0}
-            color="text-orange"
-          />
-          <Stats
-            Icon={<Calendar size={34} className="text-red" />}
-            title="High Priority"
-            count={0}
-            color="text-red"
-          />
-        </section>
-        <section className="flex items-center justify-between mt-8 mb-4">
-          <DropDown
-            options={["All Tasks", "Pending", "Completed", "High Priority"]}
-            defaultTitle={"All Tasks"}
-            onOptionChose={(option) => {
-              console.log(option);
-            }}
-          />
-          <button
-            onClick={() => {
-              setShowModel(true);
-            }}
-            className="flex items-center gap-2 text-gray-100 text-sm hover:cursor-pointer bg-gray-800 px-4 py-2 rounded-md hover:bg-gray-700 transition-all duration-300"
-          >
-            <Plus size={17} /> Add Task
-          </button>
-          {showModel && <AddTask setShowModel={setShowModel} />}
-        </section>
-        <section className="mt-12 pb-16 flex flex-col gap-6">
-          {tasks.map((task, index) => (
-            <TodoCard
-              key={index}
-              title={task.title}
-              description={task.description}
-              priority={task.priority}
-              date={task.date}
-              isCompleted={task.isCompleted}
+        {showModel && <Model setTasks={setTasks} setShowModel={setShowModel} />}
+        <div className="container mx-auto">
+          <section className="flex  items-center gap-8 justify-between pt-16">
+            <TodoStats
+              Icon={<Circle size={34} className="text-primary" />}
+              title="Total Tasks"
+              count={tasks.length}
+              color="text-black"
             />
-          ))}
-        </section>
+            <TodoStats
+              Icon={<CircleCheck size={34} className="text-green" />}
+              title="Completed"
+              count={tasks.filter((task) => task.isCompleted).length}
+              color="text-green"
+            />
+            <TodoStats
+              Icon={<Clock3 size={34} className="text-orange" />}
+              title="Pending"
+              count={tasks.filter((task) => !task.isCompleted).length}
+              color="text-orange"
+            />
+            <TodoStats
+              Icon={<Calendar size={34} className="text-red" />}
+              title="High Priority"
+              count={tasks.filter((task) => task.priority === "High").length}
+              color="text-red"
+            />
+          </section>
+          <section className="pt-12 flex justify-between items-center">
+            <DropDownMenu
+              options={["All Tasks", "Pending", "Completed", "High Priority"]}
+              defaultTitle={"All Tasks"}
+              onOptionChose={(option) => {
+                setFilter(option);
+              }}
+            />
+            <button
+              onClick={() => {
+                setShowModel(true);
+              }}
+              className="text-white bg-black rounded-lg px-4 py-2 flex items-center gap-2 hover:opacity-70 transition-all duration-700"
+            >
+              <Plus />
+              Add Task
+            </button>
+          </section>
+          <section className="mt-12 pb-16 flex flex-col gap-6">
+            {tasks
+              .filter((task) => {
+                if (filter === "All Tasks") return true;
+                if (filter === "Pending") return !task.isCompleted;
+                if (filter === "Completed") return task.isCompleted;
+                if (filter === "High Priority") return task.priority === "High";
+              })
+              .map((task) => (
+                <TodoCard
+                  key={task.id}
+                  id={task.id}
+                  title={task.title}
+                  setTasks={setTasks}
+                  description={task.description}
+                  priority={task.priority}
+                  date={task.date}
+                  isCompleted={task.isCompleted}
+                />
+              ))}
+          </section>
+        </div>
       </main>
     </>
   );
 };
 
-export default Dashboard;
+export default DashboardPage;

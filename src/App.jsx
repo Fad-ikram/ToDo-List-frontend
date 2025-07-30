@@ -1,21 +1,19 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
-import NotFound from "./pages/NotFound";
-
-
+import LoginPage from "./pages/Login";
+import "./App.css";
+import SignUpPage from "./pages/SignUp";
+import DashboardPage from "./pages/Dashboard";
+import NotFoundPage from "./pages/NotFound";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/sign-in" element={<Login />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/sign-in" element={<LoginPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="*" element={<NotFoundPage/>} />
         </Routes>
       </BrowserRouter>
     </>
