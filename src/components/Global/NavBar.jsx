@@ -11,7 +11,7 @@ const NavBar = () => {
         <h1 className="text-primary font-bold text-2xl">TodoMaster</h1>
         <div className="flex items-center gap-2 text-gray-600">
           <User />
-          Welcome, Bahaa Eddine
+          Welcome, Ben-yelles Ikram 
         </div>
       </div>
 
