@@ -1,4 +1,4 @@
-import TodoCard from "../../components/dashboard/TodoCard";
+import TodoCard from "../../components/dashboard/ToDoCard";
 import TodoStats from "../../components/dashboard/TodoStats";
 import DropDownMenu from "../../components/Global/DropDownMenu";
 import Model from "../../components/Global/Model";
