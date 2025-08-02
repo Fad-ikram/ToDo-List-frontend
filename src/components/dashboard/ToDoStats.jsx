@@ -5,7 +5,6 @@ const TodoStats = ({ title, count, Icon,color }) => {
         <h2 className= "text-gray-500">{title}</h2>
         <p className={`${color} text-3xl font-semibold`}>{count}</p>
       </div>
-
       {Icon}
     </div>
   );

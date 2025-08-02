@@ -72,7 +72,6 @@ console.log(isCompleted);
             {priority}
           </span>
           <p className="flex items-center gap-2 text-gray-500">
-            {" "}
             <Calendar size={16} /> {date}
           </p>
         </div>
