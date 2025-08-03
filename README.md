@@ -1,12 +1,49 @@
-# React + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and intuitive Todo application built with React and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add, edit, and delete tasks
+- Mark tasks as completed
+- Filter tasks by status (All, Active, Completed)
+- Responsive and user-friendly interface
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+2. **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+3. **Deploy to Vercel:**
+    - If you haven't already, [sign up for Vercel](https://vercel.com/signup).
+    - Install the [Vercel CLI](https://vercel.com/docs/cli) (optional):
+      ```bash
+      npm i -g vercel
+      ```
+    - Deploy your project:
+      ```bash
+      vercel
+      ```
+    - Follow the prompts to complete deployment.
+
+4. Once deployed, open your Vercel-provided URL in your browser.
+
+## Technologies Used
+
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+
+## License
+
+This project is licensed under the MIT License.
+  
+## Backend & Database
+
+This project will be connected to a backend using [MongoDB](https://www.mongodb.com/) for data storage. Stay tuned for setup instructions and API documentation as backend integration progresses.
